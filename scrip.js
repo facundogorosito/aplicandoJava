@@ -1,68 +1,76 @@
-console.log("Bienvenidos a JavaScrip");
+function saludar() {
+    console.log("Hola bienvenido a Ataque mortal!");
+}
+saludar();
 
 //TRABAJA DE FORMA STRING POR DEFECTO
 let nombre = prompt("Ingrese su nombre");
 
 console.log("El usuario a ingresado: " + nombre);
 
-alert("Hola !" + " " + nombre + "Que comience el juego :S !!");
+alert("Hola !" + " " + nombre + " Vamos a divertinos un poco!");
 
+let ataque = prompt("Deseas ganar cueste lo que cueste ¿si o no?");
 
-//TRABAJA DE FORMA NUMBER CAMBIANDOLO
-
-let numero1 = Number (prompt("Ingrese un numero"));
-
-console.log(numero1);
-
-//CONS.LOG SUMANDOSE
-
-let numero2 = Number (prompt("Ingrese otro numero"));
-
-console.log(numero1 + numero2 + (numero2 + numero2));
-
- // CONDICIONES Y OPERADORES //
-
-/*    ==  ES IGUAL  
-      === ESTRICTAMENTE IGUAL 
-      != ES DISTINTO
-      !== ESTRICTAMENTE DISTINTO
-    < <= > >= MENOR, MENOR O IGUAL, MAYOR, MAYOR O IGUAL
-      && OPERADOR AND (Y)
-      || OPERADOR OR (O)
-      ! OPERADOR NOT (NO)
-*/
-
-
-let edad = prompt ("Ingrese su edad");
-if (edad >= 18) {
-    alert ("Eres mayor de edad. Puedes Ingresar.");
-} else {
-    alert ("Sos menor de edad. No puedes ingresar.");
+while (ataque != "si" && ataque != "no") {
+    alert("Por favor ingresar si o no");
+    ataque = prompt("Hola, tienes ganas de ganar ¿si o no?");
+}
+if (ataque == "si") {
+    alert("A continuación combatiremos");
+    let ataque = prompt("Escribe 0 para el primer ataque, 1 para segundo ataque, 2 para el tercer ataque y 3 para el cuarto ataque");
+    if (ataque == 0) {
+        alert("Tiene un valor de " + 80 + " de daño")
+    } else if (ataque == 1) {
+        alert("Tiene un valor de " + 20 + " de daño")
+    } else if (ataque == 2) {
+        alert("Tiene un valor de " + 15 + " de daño")
+    } else if (ataque == 3) {
+        alert("Tiene un valor de " + 10 + " de daño")
+    } else {
+        alert("No es la opcion correcta")
+    }
+} else if (ataque == "no") {
+    alert("Gracias por visitarnos, hasta pronto!!")
 }
 
-let hora = prompt ("Ingrese la hora");
+let primerAtac = 80;
+let segundoAtac = 20;
+let tercerAtac = 15;
+let cuartoAtac = 100;
+let totalAtac = 0;
 
-if (hora >= 6 && hora <=12) {
-    alert ("Buenos dias !");
-} else if (hora >= 12 && hora <=19){
-    alert ("Buenas tardes!");
-} else {
-    alert ("Buenas noches!");
+while (ataque != "no") {
+    let producto = prompt("eligue otro ataque");
+    let daño = 0;
+
+    if (producto == primerAtac || producto == cuartoAtac) {
+        switch (producto) {
+            case primerAtac:
+                daño = 80;
+                alert("ganaste!!!")
+                break
+            case segundoAtac:
+                daño = 20;
+                alert("perdiste :(")
+                break
+            case tercerAtac:
+                daño = 15;
+                alert ("perdiste :(")
+                break
+            case cuartoAtac:
+                daño = 100;
+                alert ("has derrotado por completo")
+                break
+            default: 
+            break;
+        }
+    }else {
+        alert ("Te quedaste sin ataques")
+    }
+    ataque = prompt ("Desea elegir?")
+    while (ataque === "no"){
+        alert ("Gracias por jugar con nosotros, Hasta pronto!")
+        break;
+    }
 }
-
-let usuario1 = "facuz";
-let usuario2 = "coder";
-
-
-let nombreUsuario = prompt ("Ingrese su usuario")
-
-if (nombreUsuario == usuario1 || nombreUsuario == usuario2) {
-    alert ("Bienvenido " + nombreUsuario);
-} else {
-    alert ("Nombre de usuario incorrecto")
-}
-
-// CICLOS E INTERACCIONES //
-
-//- WHILE
-let 
