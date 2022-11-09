@@ -8,7 +8,7 @@ let nombre = prompt("Ingrese su nombre");
 
 console.log("El usuario a ingresado: " + nombre);
 
-alert("Hola !" + " " + nombre + " Somos Fanaticos del tenis y vendemos productos relacionados a ello.");
+alert("Hola !" + " " + nombre + " Somos Fanaticos del tenis y vendemos raquetas para tu gusto");
 
 let productos;
 let rafaNadal = 90000;
