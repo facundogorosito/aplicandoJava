@@ -26,7 +26,7 @@ let carrito = []
 let seleccion = prompt("Bievenidos! Deseas comprar alguna raqueta?");
 
 while(seleccion != "si" && seleccion != "no"){
-    alert("Por favor ingrese Si o No")
+    alert("Por favor ingrese Si o No.")
     seleccion = prompt("Hola, desear comprar alguna raqueta?")
 }
 
