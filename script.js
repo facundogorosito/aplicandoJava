@@ -35,8 +35,24 @@ const articulo12 = new Articulo(12, "Raqueta Dunlop Sx Team 280", 123970, "https
 
 const articulos = [articulo1, articulo2, articulo3, articulo4, articulo5, articulo6, articulo7, articulo8, articulo9, articulo10, articulo11, articulo12];
 
+const solicitarArticulos = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(articulos);
+      }, 1000);
+    });
+  };
+  
+  let articulos55 = []
+  
+  solicitarArticulos()
+    .then((res) => {
+      articulos55 = res;
+      mostrarCatalogo(articulos55);
+    });
 
-articulos.forEach((art) => {
+    function mostrarCatalogo(articulos55) {
+    articulos55.forEach((art) => {
     let agrupador = document.getElementById("catalogo");
     let agrupador1 = document.createElement("div");
     agrupador1.innerHTML = `
@@ -61,7 +77,40 @@ articulos.forEach((art) => {
                     </div>
                `;
     agrupador.append(agrupador1);
-})
+    });
+}
+
+setTimeout(() => {
+    let tituloFrase = document.getElementById("tituloFrase");
+    tituloFrase.innerHTML = `<h2 class="tituloFrase">Te dejamos unas frases para que reflexiones.</h2>`;
+    const numeros = [2399, 2206, 1198, 1992, 2039, 2130, 2813, 2843];
+    let contador = -1;
+    setInterval(() => {
+      if (contador < 8) {
+        contador++;
+      } else {
+        contador = -1;
+      }
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": "ccaefc98fbmsha73882bc11b185cp103be5jsne0776200c6ca",
+          "X-RapidAPI-Host": "quotes-villa.p.rapidapi.com",
+        },
+      };
+  
+      fetch("https://quotes-villa.p.rapidapi.com/quotes/art", options)
+        .then((response) => response.json())
+        .then(
+          (data) =>
+          (contenedorAgregar.innerHTML = `<div class="frase1" id="fetch"><p class="frase">${data[numeros[contador]
+          ].text.toUpperCase()}</p> <h6 class="frase">${data[numeros[contador]
+          ].author.toUpperCase()}</h6> </div>`
+          ));
+      let contenedorAgregar = document.getElementById("fetch");
+    }, 10000);
+  }, 1000);
+
 
 
 let subtotal = 0;
@@ -157,11 +206,24 @@ function agregarArticulos() {
     }    
 }
 
-
+let porEliminar;
 function eliminar(posicion) {
+  porEliminar = comprados[posicion];
+  Toastify({
+    text:
+      "Se elimino del carrito " +
+      porEliminar.cantidad +
+      " " +
+      porEliminar.descripcion,
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+  }).showToast();
     comprados.splice(posicion, 1);    
     totalCarrito();
     tablaChango();
+    comprados.length > 0 ? (tituloCarro = 1) : (tituloCarro = 0);
+    estadoDatos.innerHTML = ``;
 }
 
 
