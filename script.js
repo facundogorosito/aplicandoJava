@@ -50,7 +50,7 @@ const solicitarArticulos = () => {
       articulos55 = res;
       mostrarCatalogo(articulos55);
     });
-
+precio
     function mostrarCatalogo(articulos55) {
     articulos55.forEach((art) => {
     let agrupador = document.getElementById("catalogo");
@@ -79,7 +79,7 @@ const solicitarArticulos = () => {
     agrupador.append(agrupador1);
     });
 }
-
+/**
 setTimeout(() => {
     let tituloFrase = document.getElementById("tituloFrase");
     tituloFrase.innerHTML = `<h2 class="tituloFrase">Te dejamos unas frases para que reflexiones.</h2>`;
@@ -110,9 +110,7 @@ setTimeout(() => {
       let contenedorAgregar = document.getElementById("fetch");
     }, 10000);
   }, 1000);
-
-
-
+*/
 let subtotal = 0;
 function subTotal(precio, cant) {
     subtotal = 0;
@@ -144,7 +142,7 @@ function tablaChango() {
     if (tituloChango === 0 && comprados.length > 0) {
         let tenis1 = document.getElementById("tituloCarrito");
         let contenedor1 = document.createElement("div");
-        contenedor1.innerHTML = `<h2>Carrito de Compras</h2>
+        contenedor1.innerHTML = `<h2 class="tituloChango">Carrito de Compras</h2>
                 <table class="table" border="1" cellpading="20" cellspacing="0">
                 <tr class="color">
                     <th>CODIGO</th>
@@ -156,7 +154,15 @@ function tablaChango() {
                     </tr>                                             
                 </table>`
         tenis1.append(contenedor1);
-        verCarrito.innerHTML = ``;
+        let datos = document.getElementById("datosCliente");
+    datos.innerHTML = `
+        <label for="nombre">Nombre y Apellido:*</label>        
+        <input class="input" type="text" placeholder="Nombre y Apellido" name="nombre" id="nombre" required>
+        <label for="nombre">Dirección:*</label>        
+        <input class="input" type="text" placeholder="Dirección" name="direccion" id="direccion" required>
+        <label for="nombre">Telefono de Contacto:*</label>        
+        <input class="input" type="number" placeholder="Telefono de Contacto" name="nombre" id="telefono" required>                        
+        `;
         totalCarrito();
         tituloChango = 1;
     } else if (comprados.length > 0) {        
@@ -168,6 +174,8 @@ function tablaChango() {
         verCarrito.innerHTML = ``;
         let tenis3 = document.getElementById("confirmarCompra");
         tenis3.innerHTML = ``;
+        let datos = document.getElementById("datosCliente");
+    datos.innerHTML = ``;
         agregarArticulos();
     }
 }
@@ -222,22 +230,74 @@ function eliminar(posicion) {
     comprados.splice(posicion, 1);    
     totalCarrito();
     tablaChango();
-    comprados.length > 0 ? (tituloCarro = 1) : (tituloCarro = 0);
+    comprados.length > 0 ? (tituloChango = 1) : (tituloChango = 0);
     estadoDatos.innerHTML = ``;
+}
+let nombreCliente = "";
+let direccion = "";
+let telefono = "";
+function tomarDatos() {
+  let nombreC = document.getElementById("nombre");
+  nombreC.addEventListener("input", () => {
+    nombreCliente = nombreC.value;
+  });
+  let dire = document.getElementById("direccion");
+  dire.addEventListener("input", () => {
+    direccion = dire.value;
+  });
+  let telef = document.getElementById("telefono");
+  telef.addEventListener("input", () => {
+    telefono = telef.value;
+  });
 }
 
 
+let estadoDatos = document.getElementById("estadoDatos");
 function confirmarCarrito() {
+  if (nombreCliente === "") {
+    estadoDatos.innerHTML = `Introduzca su nombre por favor.`;
+  } else if (direccion === "") {
+    estadoDatos.innerHTML = `Introduzca su direccion por favor.`;
+  } else if (telefono === "") {
+    estadoDatos.innerHTML = `Introduzca su telefono por favor.`;
+  } else {
     comprados.length = 0;
     localStorage.clear();
     let tenis0 = document.getElementById("verCarrito");
     tenis0.innerHTML = ``;
     let tenis1 = document.getElementById("tituloCarrito");
     tenis1.innerHTML = ``;
-    verCarrito.innerHTML = `Elimino Local Storage`;
     let tenis2 = document.getElementById("totalCarro");
     tenis2.innerHTML = ``;
+    let datos = document.getElementById("datosCliente");
+    datos.innerHTML = ``;
+    estadoDatos.innerHTML = ``;
+    tituloChango = 0;
+    telefono = "";
+    let tenis3 = document.getElementById("confirmarCompra");
+    tenis3.innerHTML = ``;
+    confirmarEnvio();
+  }
 }
+
+function confirmarEnvio() {
+    Swal.fire({
+      title: `${nombreCliente}`,
+      text: `Tu pedido ingreso correctamente. Te lo enviaremos a la brevedad a ${direccion}.`,
+      width: 800,
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
+  }
+  
+  function articuloCargando(cantidad, descripcion) {
+    Toastify({
+      text: "Se agrego al carrito " + cantidad + " " + descripcion,
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+    }).showToast();
+  }
 
 class Comprado {
     constructor(codigo, descripcion, precio, cantidad, subtotal) {
@@ -267,9 +327,11 @@ class Comprado1 {
     }
 }
 
-let restablecer = 0
-function restablecerCarrito() {
-    if (restablecer === 0) {        
+let renovar = 0
+function renovarCarrito() {
+    localStorage.length === 0 &&
+    (verCarrito.innerHTML = `<p class="ver">El carrito está vacío!</p>`);
+    if (renovar === 0) {        
         guardados = JSON.parse(localStorage.getItem("productosComprados"));                
         if (localStorage.length > 0) {
             for (const objeto of guardados) {
@@ -277,60 +339,94 @@ function restablecerCarrito() {
             }
         }        
         tablaChango();
-        restablecer = 1;
+        renovar = 1;
     }
 }
 
 
-
-let cantidad = 1;
-function Agregar(numArt) {
-    cantidad = cantidad + 1;
-    let stringId = numArt.toString();
-    let container = document.getElementById(stringId);
-    container.innerHTML = `<input class="display" type="text" min="1" placeholder=  "${cantidad}" name="cantidad" disabled>`;    
-}
-
-function Sacar(numArt) {
-    if (cantidad > 0) {
-        cantidad = cantidad - 1;tablaChango
-        let stringId = numArt.toString();
-        let container = document.getElementById(stringId);
-        container.innerHTML = `<input class="display" type="text" min="1" placeholder=  "${cantidad}" name="cantidad" disabled>`;
+class Puesta {
+    constructor(codigo, cantidad) {
+      this.codigo = Number(codigo);
+      this.cantidad = Number(cantidad);
     }
-}
-
-function visualizarCarrito(numArt) {           
-    restablecerCarrito();    
-    let stringId = numArt.toString();
-    let container = document.getElementById(stringId);
-    container.innerHTML = `<input class="display" type="text" min="1" placeholder=  "${cantidad}" name="cantidad" disabled>`;
-    artSeleccionado = articulos.find((el) => el.codigo === numArt);
-    subTotal(artSeleccionado.precio, cantidad);
-    if (cantidad > 0) {
-        let existe = comprados.some(comprado => comprado.codigo === numArt);
-        if (existe === false) {
-            subTotal(artSeleccionado.precio, cantidad);
-            compra(artSeleccionado.codigo, artSeleccionado.descripcion, artSeleccionado.precio, cantidad, subtotal);
-            let poner = document.getElementById("ponerCantidad");
-            poner.innerHTML = `<p> </p>`;
-            tablaChango();
-        } else {
-            artBuscado = comprados.find((el) => el.codigo === numArt);
-            for (const objeto of comprados) {
-                if (objeto.codigo === artBuscado.codigo) {
-                    borrar = comprados.indexOf(objeto);
-                }
-            }
-            comprados.splice(borrar, 1);
-            compra(artSeleccionado.codigo, artSeleccionado.descripcion, artSeleccionado.precio, cantidad, subtotal);
-            verCarrito.innerHTML = ``;
-            totalCarrito();
-        }
+  }
+  
+  let cantidadPuesta = []
+  
+  function previa(codigo, cantidad) {
+    const previo = new Puesta(codigo, cantidad);
+    cantidadPuesta.push(previo);
+  }
+  
+  
+  
+  
+  //esta funcion suma la cantidad de un producto que figura en el display de cada uno.
+  let cantidad = 0;
+  let stringId;
+  let existe2;
+  let artPrevio;
+  function Agregar(numArt) {
+    existe2 = cantidadPuesta.some((previo) => previo.codigo === numArt);
+    if (existe2 === false) {
+      cantidad = 0;
+      cantidad++;
+      previa(numArt, cantidad);    
     } else {
-        let poner = document.getElementById("ponerCantidad");
-        poner.innerHTML = `<p>Indicar Articulo o Cantidad correctamente.</p>`;
+      artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+      artPrevio.cantidad = artPrevio.cantidad + 1;    
     }
-    cantidad = 1;
+    artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+    stringId = numArt.toString();
+    let container = document.getElementById(stringId);
+    container.innerHTML = `<input class="display" type="text" min="1" placeholder="${artPrevio.cantidad}" name="cantidad" disabled>`;
+  }
+  
+  //esta funcion resta la cantidad de un producto que figura en el display de cada uno.
+  function Sacar(numArt) {
+    existe2 = cantidadPuesta.some((previo) => previo.codigo === numArt);
+    artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+    if (existe2 === true && artPrevio.cantidad > 0) {
+      artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+      artPrevio.cantidad = artPrevio.cantidad - 1;    
+      artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+      stringId = numArt.toString();
+      let container = document.getElementById(stringId);
+      container.innerHTML = `<input class="display" type="text" min="1" placeholder="${artPrevio.cantidad}" name="cantidad" disabled>`;
+    }
+  }
+
+function visualizarCarrito(numArt) {
+    renovarCarrito();
+    artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
+    artSeleccionado = articulos55.find((el) => el.codigo === numArt);
+    existe2 = cantidadPuesta.some((previo) => previo.codigo === numArt);
+    if (existe2 === true && artPrevio.cantidad > 0) {
+      subTotal(artSeleccionado.precio, artPrevio.cantidad);
+      articuloCargando(artPrevio.cantidad, artSeleccionado.descripcion);
+      let existe = comprados.some((comprado) => comprado.codigo === numArt);
+      if (existe === false) {
+        compra(
+          artSeleccionado.codigo,
+          artSeleccionado.descripcion,
+          artSeleccionado.precio,
+          artPrevio.cantidad,
+          subtotal
+        );
+        let poner = document.getElementById("ponerCantidad");
+        poner.innerHTML = `<p> </p>`;
+        tablaChango();
+        tomarDatos();
+      } else {
+        artBuscado = comprados.find((el) => el.codigo === numArt);
+        artBuscado.cantidad = artBuscado.cantidad + artPrevio.cantidad;
+        artBuscado.subtotal = artBuscado.subtotal + subtotal;
+        verCarrito.innerHTML = ``;
+        totalCarrito();
+      }
+    } else {
+      let poner = document.getElementById("ponerCantidad");
+      poner.innerHTML = `<p>COLOCAR CANTIDAD!!!</p>`;
+    }
     subtotal = 0;
-}
+  }
