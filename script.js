@@ -79,7 +79,7 @@ precio
     agrupador.append(agrupador1);
     });
 }
-/**
+
 setTimeout(() => {
     let tituloFrase = document.getElementById("tituloFrase");
     tituloFrase.innerHTML = `<h2 class="tituloFrase">Te dejamos unas frases para que reflexiones.</h2>`;
@@ -110,7 +110,7 @@ setTimeout(() => {
       let contenedorAgregar = document.getElementById("fetch");
     }, 10000);
   }, 1000);
-*/
+
 let subtotal = 0;
 function subTotal(precio, cant) {
     subtotal = 0;
@@ -399,7 +399,7 @@ class Puesta {
 function visualizarCarrito(numArt) {
     renovarCarrito();
     artPrevio = cantidadPuesta.find((el) => el.codigo === numArt);
-    artSeleccionado = articulos55.find((el) => el.codigo === numArt);
+    artSeleccionado = articulos.find((el) => el.codigo === numArt);
     existe2 = cantidadPuesta.some((previo) => previo.codigo === numArt);
     if (existe2 === true && artPrevio.cantidad > 0) {
       subTotal(artSeleccionado.precio, artPrevio.cantidad);
