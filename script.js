@@ -32,7 +32,7 @@ const articulo11 = new Articulo(11, "Raqueta Dunlop Fx 500 Grip 3", 62370, "http
 const articulo12 = new Articulo(12, "Raqueta Dunlop Sx Team 280", 123970, "https://www.dexter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw8513d385/products/DU_UTRVFV147BY/DU_UTRVFV147BY-1.JPG");
 
 
-const articulos = [articulo1, articulo2, articulo3, articulo4, articulo5, articulo6, articulo7, articulo8, articulo9, articulo10, articulo11, articulo12];
+const articulos1 = [articulo1, articulo2, articulo3, articulo4, articulo5, articulo6, articulo7, articulo8, articulo9, articulo10, articulo11, articulo12];
 
 const solicitarArticulos = () => {
   return new Promise((resolve, reject) => {

@@ -4,6 +4,8 @@
     margin: 0;
 }
 
+
+
 .navbar-nav me-auto mb-2 mb-lg-0 {
     width: 80vw;
 }
@@ -11,6 +13,7 @@
 .navbar {
     width: 100vw;
     height: auto;
+
 }
 
 .nav-color {
@@ -31,19 +34,10 @@
     margin: 10px;
 }
 
-.color {
-    color: aliceblue;
-}
-
-
 
 .carrito {
     height: 50px;
     margin: 10px;
-}
-
-.bg-light {
-    background-color: rgba(109, 106, 106, 0.781);
 }
 
 body {
@@ -57,6 +51,7 @@ body {
 }
 
 .main {
+    background-image: url(../img/fondos23.jpg);
     position: relative;
     top: 95px;
     height: auto;
@@ -65,10 +60,28 @@ body {
     width: 100vw;
     overflow-x: hidden;
 
+
 }
 
-.header h1 h2 h3 {
+.header {
     overflow-x: hidden;
+}
+
+
+h1 {
+    overflow-y: hidden;
+}
+
+h2 {
+    overflow-y: hidden;
+}
+
+h3 {
+    overflow-y: hidden;
+}
+
+.card{
+    height: 600px;
 }
 
 .card-body {
@@ -77,58 +90,322 @@ body {
     align-items: center;
 }
 
+
 .btn:hover {
-    background-color: burlywood;
-    color: rgb(109, 116, 109);
+    background-color: rgb(70, 69, 69);
 }
 
 .navbar li:hover {
-    background-color: whitesmoke;
-    border: 1px solid black;
-    border-radius: 10%;
+    padding: 10px;
+    background-color: rgb(78, 75, 75);
+    border: 1px solid rgb(49, 42, 42);
+    border-radius: 5%;
 }
 
-.boton {
-    display: flex;
-    align-items: center;
+
+.tituloCarro{
+    text-align: center;
+    margin: 20px;
 }
 
-.grilla {
-    background-image: url(../img/fondoPag.jpg);
-}
-
-#tituloCarrito {
+.table{
+    width: 100vw;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
-    text-align: center;
-    margin-top: 40px;
+    align-items: center;
+    margin-right: 10px;
+    justify-content: flex-start;
+    border: 0;
 
+}
 
-
+.table tbody{
+    width: 95vw;
+    border: 0;
 }
 
 .table tr th {
     border: 1px solid black;
     text-align: center;
-    width: 10vw;
+    width: 15vw;
+    font-size: 12px;
+    margin: 0;
+    padding: 5px;
+   
+    
+}
+
+.table1{
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    justify-content: flex-start;
+    border: 0;
+
+}
+
+.table1 tbody{
+    width: 95vw;
+    border: 0;
 }
 
 .table1 tr td {
 
     border: 1px solid black;
     text-align: center;
-    width: 10vw;
+    width: 15vw;
+    font-size: 10px;
+    margin: 0;
+    padding: 5px;
+
+    
 }
 
-.botonesDisplay{
+.total{
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+
+
+.botonesDisplay {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.display{
+.display {
     width: 100px;
     height: 50px;
     margin: 0 10px 0 10px;
     text-align: center;
+}
+
+.frase{
+    color: black;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: beige;
+    width: 80vw;
+    display: flex;
+    margin: 0;
+    padding: 20px;
+    
+}
+
+.frase1{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px 20px 20px;
+    
+}
+
+.tituloFrase{
+    color: rgb(17, 15, 15);
+    text-align: center;
+    margin-bottom: 0;
+}
+
+
+.datosC{
+    display: flex;    
+    flex-direction: column;
+    align-content: center;    
+}
+
+.estado{
+    text-align: center;
+    margin: 20px;
+}
+
+.botonConfirmarCompra{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;    
+}
+
+.ver{
+    text-align: center;
+}
+
+.ponerCant{
+    text-align: center;
+    color: red;
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+/* medias query */
+
+@media (min-width: 768px) {
+
+    .main-contacto {
+        min-height: 67vh;
+    }
+
+    .input-group {
+        width: 60vw;
+    }
+
+    .fotos1 img {
+        width: 30vw;
+    }
+
+    .fotos2 img {
+        width: 25vw;
+    }
+
+    .local ul {
+        margin: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .local ul li img {
+        width: 28vw;
+        height: auto;
+    }
+
+    .mapa {
+        width: 40vw;
+    }
+
+    .formulario form {
+        width: 50vw;
+    }
+
+    .formulario form select {
+        width: 50vw;
+    }
+
+    .label-input {
+        width: 50vw;
+    }
+
+    .formulario form button {
+        width: 50vw;
+    }
+
+    .datosC{
+        width: 100vw; 
+        justify-content: center;  
+        align-items: center;
+    }
+
+    .input{
+        width: 50vw;
+        
+    }
+
+    .table{
+        
+        justify-content: center;
+    
+    }
+
+    .table tr th {        
+        font-size: 20px;
+        margin: 0;
+        padding: 5px;
+        justify-content: center;
+        
+    }
+    
+    .table1{
+       
+        justify-content: center;
+    
+    }
+
+    .table1 tr td {
+    
+        
+        font-size: 20px;
+        margin: 0;
+        padding: 5px;
+        justify-content: center;
+    
+        
+    }
+
+}
+
+
+@media (min-width: 1024px) {
+
+    * {
+        overflow-x: visible;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+
+
+    .input-group {
+        width: 50vw;
+    }
+
+    .navbar {
+        height: 110px;
+    }
+
+    navbar-brand img {
+        width: 200px;
+    }
+
+    .footer {
+        position: relative;
+        bottom: -110px;
+        left: 0;
+        right: 0;
+    }
+
+    .main {
+        position: relative;
+        top: 110px;
+        height: auto;
+    }
+
+    .main-contacto {
+        position: relative;
+        top: 110px;
+    }
+}
+
+
+@media (min-width: 1366px) {
+
+    .margen {
+        margin-left: 200px;
+    }
+
+    .formulario form {
+        width: 30vw;
+    }
+
+    .formulario form select {
+        width: 30vw;
+    }
+
+    .label-input {
+        width: 30vw;
+    }
+
+    .formulario form button {
+        width: 30vw;
+    }
+
+    
 }
