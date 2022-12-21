@@ -79,6 +79,7 @@ function mostrarCatalogo(articulos) {
   });
 }
 
+
 setTimeout(() => {
   let tituloFrase = document.getElementById("tituloFrase");
   tituloFrase.innerHTML = `<h2 class="tituloFrase">Le dejamos unas frases reflexibas</h2>`;
@@ -130,7 +131,7 @@ function totalCarrito() {
     tenis3.innerHTML = `<button class="btn btn-primary" onclick="confirmarCarrito()">Confirmar Carro</button>`;
   } else {
     let tenis1 = document.getElementById("verCarrito");
-    tenis1.innerHTML = ``;contenedor1
+    tenis1.innerHTML = ``;
     verCarrito.innerHTML = ``;
     let tenis2 = document.getElementById("totalCarro");
     tenis2.innerHTML = ``;
