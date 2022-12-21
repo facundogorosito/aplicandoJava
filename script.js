@@ -111,9 +111,6 @@ setTimeout(() => {
 }, 1000);
 
 
-
-
-
 let subtotal = 0;
 function subTotal(precio, cant) {
   subtotal = 0;
